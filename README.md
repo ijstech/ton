@@ -10,18 +10,23 @@ Cross-platform client for TON blockchain.
 - 🍰 Get balance
 - ✈️ Transfers
 
-## Install
+## Setup and Installation
+
+To get started, follow these steps:
+
+### 1: Install the required packages using the following command:
 
 ```bash
-yarn add @ton/ton @ton/crypto @ton/core buffer
+docker-compose up install
 ```
 
-#### Browser polyfill
+### 2: Build and bundle the library using the following command:
 
-```js
-// Add before using library
-require("buffer");
+```bash
+docker-compose up build
 ```
+
+After the build process is completed, could copy the `lib` and `types` folders to `@scom/ton-core` to update ton-core package
 
 ## Usage
 
