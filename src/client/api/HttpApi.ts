@@ -355,7 +355,11 @@ export class HttpApi {
         if (decoded.success) {
             return decoded.data;
         } else {
-            throw Error('Malformed response: ' + decoded.error.format()._errors.join(', '));
+            if ("error" in decoded) {
+                throw Error('Malformed response: ' + decoded.error.format()._errors.join(', '));
+            } else {
+                throw Error('Malformed response: ');
+            }
         }
     }
 }

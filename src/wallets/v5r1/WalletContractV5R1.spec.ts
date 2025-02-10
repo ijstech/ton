@@ -18,7 +18,7 @@ import { tillNextSeqno } from "../../utils/testWallets";
 const getExtensionsArray = async (wallet: OpenedContract<WalletContractV5R1>) => {
     try {
         return await wallet.getExtensionsArray();
-    } catch (e) {
+    } catch (e: any) {
         // Handle toncenter bug. Toncenter incorrectly returns 'list' in the stack in case of empty extensions dict
         if (e && typeof e === 'object' && 'message' in e && e.message === 'Unsupported stack item type: list') {
             return [];
