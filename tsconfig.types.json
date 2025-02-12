@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "./types",
+    "outFile": "./types/index.d.ts",
     "moduleResolution": "node",
     "module": "commonjs",
     "target": "ES2020",

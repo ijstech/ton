@@ -1,6 +1,3 @@
-// const dependencies = require('./package.json').dependencies || {}
-// const packageName = require('./package.json').name
-
 const Fs = require('fs')
 
 async function readFile(fileName) {
@@ -47,5 +44,29 @@ define("@scom/ton-core", ["require", "exports"], function (require, exports) {
 });`
 
   Fs.writeFileSync('lib/bundle.js', content)
+
+  let typesContent = await readFile('types/index.d.ts')
+  typesContent = typesContent.replace(/@ton\/core/g, "@ijstech/ton-core")
+
+  const regex = /declare\smodule\s\"index\"\s\{\n(.*?)\n\}\n/gs;
+  let mainContent = '';
+  while (match = regex.exec(typesContent)) {
+    mainContent += match[1];
+  }
+  typesContent = typesContent.replace(regex, '');
+
+  typesContent = `${typesContent}
+  /// <amd-module name="@ton/core" />
+declare module "@ton/core" {
+  ${mainContent}
 }
+
+/// <amd-module name="@scom/ton-core" />
+declare module "@scom/ton-core" {
+  ${mainContent}
+}
+`
+  Fs.writeFileSync('types/index.d.ts', typesContent)
+}
+
 build()
