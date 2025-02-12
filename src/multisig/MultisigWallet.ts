@@ -1,6 +1,6 @@
 /* Made by @Gusarich and @Miandic */
 
-import { TonClient } from '../index';
+import { TonClient } from '../client/TonClient';
 import { keyPairFromSecretKey, sign } from '@ton/crypto';
 import {
     Address,
