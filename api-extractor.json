@@ -1,0 +1,43 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+  "mainEntryPointFilePath": "types/index.d.ts",
+  "dtsRollup": {
+    "enabled": true,
+    "untrimmedFilePath": "types/bundle.d.ts"
+  },
+  "bundledPackages": ["@ijstech/ton-core", "@ton/crypto", "@tonconnect/sdk", "axios"],
+  "apiReport": {
+    "enabled": true,
+    "reportFileName": "api-report.md",
+    "reportFolder": "./api-extractor"
+  },
+  "projectFolder": "..",
+  "compiler": {
+    "tsconfigFilePath": "tsconfig.types.json"
+  },
+  "docModel": {
+    "enabled": true,
+    "apiJsonFilePath": "./api-extractor/api-extractor-api.json"
+  },
+  "tsdocMetadata": {
+    "enabled": true,
+    "tsdocMetadataFilePath": "./api-extractor/tsdoc-metadata.json"
+  },
+  "messages": {
+    "compilerMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      }
+    },
+    "extractorMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      }
+    },
+    "tsdocMessageReporting": {
+      "default": {
+        "logLevel": "warning"
+      }
+    }
+  }
+}

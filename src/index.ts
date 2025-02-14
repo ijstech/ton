@@ -82,11 +82,13 @@ export {
     TransactionCreditPhase, loadTransactionCreditPhase, storeTransactionCreditPhase ,
     TransactionDescription, TransactionDescriptionGeneric, TransactionDescriptionMergeInstall, TransactionDescriptionMergePrepare, TransactionDescriptionSplitInstall, TransactionDescriptionSplitPrepare, TransactionDescriptionStorage, TransactionDescriptionTickTock, loadTransactionDescription, storeTransactionDescription ,
     TransactionStoragePhase, loadTransactionStoragePhase, storeTransactionsStoragePhase
-} from '@ijstech/ton-core';
+} from '@ton/core';
 
 export * as TonCrypto from '@ton/crypto';
 
 export * as TonConnector from "@tonconnect/sdk";
+
+export * from 'zod';
 
 //
 // toncenter Client

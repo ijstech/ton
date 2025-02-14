@@ -10,3 +10,6 @@
 !.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+types/**/*/
+api-extractor/
+copy.sh
