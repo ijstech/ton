@@ -4,19 +4,26 @@
   "repository": "https://github.com/ton-org/ton.git",
   "author": "Whales Corp. <developers@whalescorp.com>",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types",
+    "lib"
   ],
   "scripts": {
     "docs": "rm -fr docs && typedoc src/index.ts",
-    "buildLib": "rm -rf types && tsc --P tsconfig.types.json && node esbuild.bundle.js",
+    "build:zod": "find node_modules/zod -name '*.d.ts' -exec cat {} + > zod.d.ts",
+    "build:types": "npx api-extractor run --local",
+    "rm:types": "find types -type f -name '*.d.ts' ! -name 'index.d.ts' -delete && find types -type d -empty -delete",
+    "buildLib": "rm -rf types && tsc --P tsconfig.types.json && npm run build:types && node esbuild.bundle.js && npm run rm:types",
     "test": "jest --verbose --runInBand",
     "release": "yarn build && yarn release-it --npm.yarn1",
     "build": "rm -rf lib && rm -rf dist && tsc --declaration && yarn buildLib"
   },
   "devDependencies": {
     "@ijstech/ton-core": "https://github.com/ijstech/ton-core.git",
+    "@microsoft/api-extractor": "^7.50.0",
     "@release-it/keep-a-changelog": "^5.0.0",
     "@ton/crypto": "3.2.0",
     "@ton/emulator": "^2.1.1",
@@ -40,14 +47,14 @@
     "ts-node": "10.9.1",
     "typedoc": "^0.23.24",
     "typescript": "4.8.4",
-    "webpack": "^5.51.2"
+    "webpack": "^5.51.2",
+    "zod": "^3.21.4"
   },
   "dependencies": {
     "axios": "^1.6.7",
     "dataloader": "^2.0.0",
     "symbol.inspect": "1.0.1",
-    "teslabot": "^1.3.0",
-    "zod": "^3.21.4"
+    "teslabot": "^1.3.0"
   },
   "peerDependencies": {
     "@ton/core": ">=0.60.0",
