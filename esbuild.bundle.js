@@ -1,14 +1,5 @@
 const Fs = require('fs')
 
-async function readFile(fileName) {
-  return new Promise((resolve, reject) => {
-    Fs.readFile(fileName, 'utf8', function (err, data) {
-      if (err) reject(err)
-      else resolve(data)
-    })
-  })
-}
-
 // const dependencies = {
 //   'axios.d.ts': 'axios',
 //   'tonconnect.d.ts': '@tonconnect/sdk'
@@ -28,7 +19,7 @@ async function build() {
     })
     .catch(() => process.exit(1));
 
-  let content = await readFile('lib/index.js')
+  let content = Fs.readFileSync('lib/index.js', 'utf8')
   content = content.replace(/@ton\/core/g, "@ijstech/ton-core")
 
   Fs.writeFileSync('lib/index.js', content)
@@ -51,7 +42,7 @@ define("@scom/ton-core", ["require", "exports", "@ijstech/ton-core"], function (
   //   })
   // }
 
-  let typesContent = await readFile('types/bundle.d.ts')
+  let typesContent =  Fs.readFileSync('types/bundle.d.ts', 'utf8')
 
   // const maybeRegex = /declare\smodule\s\"utils\/maybe\"\s\{\n(.*?)\n\}\n/gs;
   // typesContent = typesContent.replace(maybeRegex, "")
@@ -80,10 +71,18 @@ define("@scom/ton-core", ["require", "exports", "@ijstech/ton-core"], function (
 //   ${mainContent}
 // }
 // `
+
   typesContent = typesContent
     .replace(/@ton\/core/g, "@ijstech/ton-core")
     .replace("from 'boc/Cell'", "from '@ijstech/ton-core'")
-  Fs.writeFileSync('types/index.d.ts', typesContent)
+    .replace(/^import\s+\{[^}]*\}\s+from\s+['"]zod['"];\n?\s*/gm, "")
+    .replace("export { z }", "")
+
+  const zodTypes = Fs.readFileSync('node_modules/@ijstech/zod/types/index.d.ts', 'utf8')
+
+  Fs.writeFileSync('types/index.d.ts', `${zodTypes}
+${typesContent}
+`)
 }
 
 build()

@@ -13,7 +13,6 @@
   ],
   "scripts": {
     "docs": "rm -fr docs && typedoc src/index.ts",
-    "build:zod": "find node_modules/zod -name '*.d.ts' -exec cat {} + > zod.d.ts",
     "build:types": "npx api-extractor run --local",
     "rm:types": "find types -type f -name '*.d.ts' ! -name 'index.d.ts' -delete && find types -type d -empty -delete",
     "buildLib": "rm -rf types && tsc --P tsconfig.types.json && npm run build:types && node esbuild.bundle.js && npm run rm:types",
@@ -23,6 +22,7 @@
   },
   "devDependencies": {
     "@ijstech/ton-core": "https://github.com/ijstech/ton-core.git",
+    "@ijstech/zod": "https://github.com/ijstech/zod.git",
     "@microsoft/api-extractor": "^7.50.0",
     "@release-it/keep-a-changelog": "^5.0.0",
     "@ton/crypto": "3.2.0",
@@ -47,8 +47,7 @@
     "ts-node": "10.9.1",
     "typedoc": "^0.23.24",
     "typescript": "4.8.4",
-    "webpack": "^5.51.2",
-    "zod": "^3.21.4"
+    "webpack": "^5.51.2"
   },
   "dependencies": {
     "axios": "^1.6.7",

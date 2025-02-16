@@ -88,7 +88,7 @@ export * as TonCrypto from '@ton/crypto';
 
 export * as TonConnector from "@tonconnect/sdk";
 
-export * from 'zod';
+export { z } from 'zod'
 
 //
 // toncenter Client

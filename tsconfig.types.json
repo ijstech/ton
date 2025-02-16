@@ -12,7 +12,8 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@ton/core": ["node_modules/@ijstech/ton-core"]
+      "@ton/core": ["node_modules/@ijstech/ton-core"],
+      "zod": ["node_modules/@ijstech/zod"]
     },
     "types": []
   },
