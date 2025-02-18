@@ -80,8 +80,11 @@ define("@scom/ton-core", ["require", "exports", "@ijstech/ton-core"], function (
 
   const zodTypes = Fs.readFileSync('node_modules/@ijstech/zod/types/index.d.ts', 'utf8')
 
-  Fs.writeFileSync('types/index.d.ts', `${zodTypes}
-${typesContent}
+  Fs.writeFileSync('types/index.d.ts', `/// <amd-module name="@scom/ton-core" />
+declare module "@scom/ton-core" {
+  ${zodTypes}
+  ${typesContent}
+}
 `)
 }
 

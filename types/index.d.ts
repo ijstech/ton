@@ -1,4 +1,6 @@
-type Primitive = string | number | symbol | bigint | boolean | null | undefined;
+/// <amd-module name="@scom/ton-core" />
+declare module "@scom/ton-core" {
+  type Primitive = string | number | symbol | bigint | boolean | null | undefined;
 type Scalars = Primitive | Primitive[];
 
 declare namespace util {
@@ -3195,7 +3197,7 @@ export {
   z,
 };
 
-/// <reference types="@ijstech/ton-core" />
+  /// <reference types="@ijstech/ton-core" />
 
 
 import { ABIArgument } from '@ijstech/ton-core';
@@ -8939,3 +8941,4 @@ declare class WrongAddressError extends TonConnectError {
 
 export { }
 
+}
