@@ -1,4 +1,6 @@
-type Primitive = string | number | symbol | bigint | boolean | null | undefined;
+/// <amd-module name="@scom/ton-core" />
+declare module "@scom/ton-core" {
+  type Primitive = string | number | symbol | bigint | boolean | null | undefined;
 type Scalars = Primitive | Primitive[];
 
 declare namespace util {
@@ -8939,3 +8941,5 @@ declare class WrongAddressError extends TonConnectError {
 
 export { }
 
+}
+  

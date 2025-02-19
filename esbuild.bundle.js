@@ -11,7 +11,7 @@ async function build() {
       entryPoints: ['src/index.ts'],
       outdir: 'lib',
       bundle: true,
-      minify: false,
+      minify: true,
       format: 'cjs',
       target: 'esnext',
       inject: ['./buffer-shim.js'],
@@ -80,12 +80,16 @@ define("@scom/ton-core", ["require", "exports", "@ijstech/ton-core"], function (
 
   const zodTypes = Fs.readFileSync('node_modules/@ijstech/zod/types/index.d.ts', 'utf8')
 
-  Fs.writeFileSync('types/index.d.ts', `/// <amd-module name="@scom/ton-core" />
+  Fs.writeFileSync('types/index.d.ts', `${zodTypes}
+  ${typesContent}
+`)
+
+  Fs.writeFileSync('pluginTypes/index.d.ts', `/// <amd-module name="@scom/ton-core" />
 declare module "@scom/ton-core" {
   ${zodTypes}
   ${typesContent}
 }
-`)
+  `)
 }
 
 build()
