@@ -26,7 +26,7 @@ docker-compose up install
 docker-compose up build
 ```
 
-After the build process is completed, could copy the `lib` and `types` folders to `@scom/ton-core` to update ton-core package
+After the build process is completed, could copy the `lib`, `pluginTypes`, and `types` folders to `@scom/ton-core` to update ton-core package
 
 ## Usage
 
