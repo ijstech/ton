@@ -25,7 +25,7 @@ async function build() {
   Fs.writeFileSync('lib/index.js', content)
 
   content = `
-define("@scom/ton-core", ["require", "exports", "@ijstech/ton-core"], function (require, exports, toncore_1) {
+define("@scom/ton-core", ["require", "exports"], function (require, exports) {
   Object.defineProperty(exports, "__esModule", { value: true }); 
   ${content}
   window.TonCore = exports;
